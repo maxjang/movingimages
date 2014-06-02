@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 
-gem 'unicorn', group: :development
+gem 'instagram'
+gem 'omniauth-instagram'
+gem 'json'
 gem 'rails_12factor', group: :production
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

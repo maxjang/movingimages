@@ -7,8 +7,22 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <p class="flash">
+    <%= flash.notice %>
+  </p>
+  <div id="container">
+    <div id="content">
+      <%= yield %>
+      <hr>
+      <h6>
+        <% if current_user %>
+          <%= image_tag current_user.image %><br />
+          <%= "Logged in as #{current_user.name}" %>
+          <%= link_to "Sign out", logout_path %>
+        <% else %>
+          <%= link_to "Sign in with Instagram", "/auth/instagram" %>
+        <% end %>
+      </h6>
+    </div>
+  </div>
 </body>
-</html>

@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140602014507) do
+ActiveRecord::Schema.define(version: 20140602042649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "saved_experiences", force: true do |t|
+    t.string   "instagram_media_author"
+    t.string   "instagram_media_id"
+    t.string   "instagram_media_url"
+    t.text     "instagram_media_text"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"

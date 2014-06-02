@@ -1,0 +1,7 @@
+<h1>See Saved Experiences</h1>
+
+<% @experiences.each do |exp| %>
+  <%= image_tag exp.instagram_media_url %><br/>
+  <%= exp.instagram_media_text %><br/>
+  <%= exp.instagram_media_author %><br/>
+<% end %>

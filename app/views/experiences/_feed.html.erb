@@ -1,20 +1,26 @@
-<% @instagram.each do |instagram| %>
-  <% if instagram.type == "video" %>
-    <%= link_to instagram.videos.standard_resolution.url do %>
-      <%= video_tag instagram.videos.standard_resolution.url, :controls => true %>
+<% @experiences.each do |exp| %>
+  <% if exp.type == "video" %>
+    <%= link_to "http://www.google.com" do %>
+      <%= video_tag exp.videos.standard_resolution.url, :controls => true %>
     <% end %><br/>
   <% else %>
-    <%= link_to instagram.images.standard_resolution.url do %>
-      <%= image_tag instagram.images.standard_resolution.url %>
+    <%= link_to saved_experiences_path(:instagram_media_author => exp.user.id, :instagram_media_id => exp.id, :instagram_media_url => exp.images.standard_resolution.url, :instagram_media_text => exp.caption.text), method: :post do %>
+      <%= image_tag exp.images.standard_resolution.url %>
     <% end %><br/>
   <% end %>
-  <%= instagram.user.username %><br/>
-  Likes: <%= instagram.likes[:count] %><br/>
-  <% instagram.likes[:data].each do |user| %>
+  <%= exp.caption.text %><br/>
+  <% if exp.location %>
+    <% exp.location.each do |key, value| %>
+      <%= "#{key}: #{value}" %><br/>
+    <% end %>
+  <% end %>
+  <%= exp.user.username %><br/>
+  Likes: <%= exp.likes[:count] %><br/>
+  <% exp.likes[:data].each do |user| %>
     <%= image_tag user.profile_picture %>
   <% end %><br/>
-  Comments: <%= instagram.comments[:count] %><br/>
-  <% instagram.comments[:data].each do |user| %>
+  Comments: <%= exp.comments[:count] %><br/>
+  <% exp.comments[:data].each do |user| %>
     <%= image_tag user.profile_picture %>
   <% end %><br/>
 <% end %>

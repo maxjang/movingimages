@@ -1,0 +1,21 @@
+<% if @experience.type == "video" %>
+  <%= link_to saved_experiences_path(:instagram_media_author => @experience.user.id, :instagram_media_id => @experience.id, :instagram_media_url => @experience.videos.standard_resolution.url, :instagram_media_text => @experience.caption.text), method: :post do %>
+    <%= video_tag @experience.videos.standard_resolution.url, :controls => true %>
+  <% end %><br/>
+  <%= link_to "More", experience_path(@experience.id) %><br/>
+<% else %>
+  <%= link_to saved_experiences_path(:instagram_media_author => @experience.user.id, :instagram_media_id => @experience.id, :instagram_media_url => @experience.images.standard_resolution.url, :instagram_media_text => @experience.caption.text), method: :post do %>
+    <%= image_tag @experience.images.standard_resolution.url %>
+  <% end %><br/>
+  <%= link_to "More", experience_path(@experience.id) %><br/>
+<% end %>
+<%= @experience.caption.text %><br/>
+<%= @experience.user.username %><br/>
+Likes: <%= @experience.likes[:count] %><br/>
+<% @experience.likes[:data].each do |user| %>
+  <%= image_tag user.profile_picture %>
+<% end %><br/>
+Comments: <%= @experience.comments[:count] %><br/>
+<% @experience.comments[:data].each do |user| %>
+  <%= image_tag user.profile_picture %>
+<% end %><br/>

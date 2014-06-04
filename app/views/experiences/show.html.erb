@@ -1,0 +1,9 @@
+<h1>Experience Details</h1>
+
+<% if @experience %>
+  <%= render partial: "display", object: @experience %>
+  <% if @experience.location %>
+    <%= @experience.location[:name] if @experience.location[:name] %><br/>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?size=400x400&zoom=16&markers=#{@experience.location[:latitude]}%2C#{@experience.location[:longitude]}" if @experience.location[:latitude] and @experience.location[:longitude] %><br/>
+  <% end %>
+<% end %>
